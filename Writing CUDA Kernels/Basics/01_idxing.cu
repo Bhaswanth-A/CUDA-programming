@@ -11,16 +11,16 @@ __global__ void whoami(void)
     int block_offset = block_id *
                        blockDim.x * blockDim.y * blockDim.z;
 
-    int thread_offset = threadIdx.x +
+    int thread_id = threadIdx.x +
                         threadIdx.y * blockDim.x +
                         threadIdx.z * blockDim.x * blockDim.y;
 
-    int id = block_offset + thread_offset;
+    int id = block_offset + thread_id;
 
     printf("%04d | Block (%d %d %d) = %3d | Thread (%d %d %d) = %3d\n",
            id,
            blockIdx.x, blockIdx.y, blockIdx.z, block_id,
-           threadIdx.x, threadIdx.y, threadIdx.z, thread_offset);
+           threadIdx.x, threadIdx.y, threadIdx.z, thread_id);
 }
 
 int main(int argc, char **argv)

@@ -58,9 +58,9 @@ int main()
     float *d_a, *d_b, *d_c_1d, *d_c_3d;
     size_t size = N * sizeof(float);
 
-    h_a = (float *)malloc(size);
-    h_b = (float *)malloc(size);
-    h_c_cpu = (float *)malloc(size);
+    h_a = (float*)malloc(size);
+    h_b = (float*)malloc(size);
+    h_c_cpu = (float*)malloc(size);
 
     srand(time(NULL));
     init_vector(h_a, N);

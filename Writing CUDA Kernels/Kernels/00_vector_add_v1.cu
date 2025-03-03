@@ -31,6 +31,22 @@ __global__ void vector_add_gpu(float *a, float *b, float *c, int n)
     }
 }
 
+/*
+If N is larger than the total number of threads, some elements in c would remain uncomputed.
+The while loop ensures that if there are fewer threads than needed, each thread processes multiple 
+elements. Each thread starts at tid and then jumps forward in steps of blockDim.x * gridDim.x until all 
+elements are covered.
+*/
+// __global__ void vector_add_gpu(float *a, float *b, float *c, int n)
+// {
+//     int i = threadIdx.x + blockIdx.x * blockDim.x;
+//     while (i < n)
+//     {
+//         c[i] = a[i] + b[i];
+//         i += blockDim.x * gridDim.x;
+//     }
+// }
+
 int main()
 {
     float *h_a, *h_b, *h_c_cpu;
